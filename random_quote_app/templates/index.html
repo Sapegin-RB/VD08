@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote App</title>
+    <script>
+        async function fetchQuote() {
+            const response = await fetch('/api/get-quote');
+            const data = await response.json();
+            document.getElementById('quote').innerText = `"${data.quote}"`;
+            document.getElementById('author').innerText = `- ${data.author}`;
+        }
+    </script>
+</head>
+<body onload="fetchQuote()">
+    <h1>Random Quote</h1>
+    <p id="quote">Loading...</p>
+    <p id="author"></p>
+    <button onclick="fetchQuote()">Get Another Quote</button>
+</body>
+</html>
